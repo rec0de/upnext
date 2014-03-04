@@ -1,6 +1,6 @@
 Name: UpNext
 Summary: UpNext - German TV
-Version: 0.3.0.0
+Version: 0.3.0.1
 Release: 1
 Group: Qt/Qt
 URL: http://rec0de.net/
@@ -10,6 +10,8 @@ Sources:
 Description: |-
   TV Guide for the most common german channels.
   Currently supports ARD, ZDF, 3sat, RTL, Pro7 and Kabel1.
+
+  Source is available on github. http://github.com/rec0de/upnext
 
   Contact me via email: mail@rec0de.net
   or via Twitter: @rec0denet

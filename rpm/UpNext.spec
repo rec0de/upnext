@@ -12,8 +12,8 @@ Name:       UpNext
 %{!?qtc_qmake5:%define qtc_qmake5 %qmake5}
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
-Summary:    UpNext
-Version:    0.2.9.9
+Summary:    UpNext - German TV
+Version:    0.3.0.1
 Release:    1
 Group:      Qt/Qt
 License:    Do whatever you want. Bu don't steal my icon.
@@ -28,8 +28,15 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-TV Program for the most common german channels
+TV Guide for the most common german channels.
+Currently supports ARD, ZDF, 3sat, RTL, Pro7 and Kabel1.
 
+Source is available on github. http://github.com/rec0de/upnext
+
+Contact me via email: mail@rec0de.net
+or via Twitter: @rec0denet
+
+Note: This is my very first sailfish app. The code is probably horrible, but it works. :)
 
 %prep
 %setup -q -n %{name}-%{version}
