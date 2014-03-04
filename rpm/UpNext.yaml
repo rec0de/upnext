@@ -1,0 +1,36 @@
+Name: UpNext
+Summary: UpNext - German TV
+Version: 0.3.0.0
+Release: 1
+Group: Qt/Qt
+URL: http://rec0de.net/
+License: Do whatever you want. Bu don't steal my icon.
+Sources:
+- '%{name}-%{version}.tar.bz2'
+Description: |-
+  TV Guide for the most common german channels.
+  Currently supports ARD, ZDF, 3sat, RTL, Pro7 and Kabel1.
+
+  Contact me via email: mail@rec0de.net
+  or via Twitter: @rec0denet
+
+  Note: This is my very first sailfish app. The code is probably horrible, but it works. :)
+Configure: none
+Builder: qtc5
+PkgConfigBR:
+- sailfishapp >= 0.0.10
+- Qt5Core
+- Qt5Qml
+- Qt5Quick
+Requires:
+- sailfishsilica-qt5 >= 0.10.9
+Files:
+- /usr/share/icons/hicolor/86x86/apps
+- /usr/share/applications
+- /usr/share/UpNext
+- /usr/bin
+- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
+- '%{_datadir}/applications/%{name}.desktop'
+- '%{_datadir}/%{name}/qml'
+- '%{_bindir}'
+PkgBR: []
