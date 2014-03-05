@@ -5,32 +5,94 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
-
-    property alias _resText: resLabel.text
-
-
-
     SilicaFlickable {
+        id: flick
         anchors.fill: parent
-
-
-
-        // Tell SilicaFlickable the height of its content.
         contentHeight: childrenRect.height
 
-        // Place our content in a Column.  The PageHeader is always placed at the top
-        // of the page, followed by our content.
+        ScrollDecorator { flickable: flick }
+
         Column {
             anchors.fill: parent
             anchors.margins: Theme.paddingLarge
             spacing: Theme.paddingLarge
+
             PageHeader {
                 title: "About"
             }
 
+            SectionHeader {
+                text: "License"
+            }
+
             Label {
-                id: resLabel
-                text: "Made by @rec0denet<br><br>This app has no license.<br>Do whatever you want.<br>But please dont steal my icon.<br><br> Also, this app is complete crap.<br>If you can do it any better,<br>please contact me: mail@rec0de.net <br><br>Source: <a href='https://github.com/rec0de/upnext'>github.com/rec0de/upnext</a><br><br>This App is based on 'Helloworld Pro'<br>by Artem Marchenko. Thanks a lot!"
+                text: "The Unlicense"
+                anchors.horizontalCenter: parent.horizontalCenter
+                MouseArea {
+                    id : licenseMouseArea
+                    anchors.fill : parent
+                    onClicked: Qt.openUrlExternally("http://unlicense.org")
+                }
+            }
+
+            SectionHeader {
+                text: "Made by"
+            }
+
+            Label {
+                text: "@rec0denet"
+                anchors.horizontalCenter: parent.horizontalCenter
+                MouseArea {
+                    id : madebyMouseArea
+                    anchors.fill : parent
+                    onClicked: Qt.openUrlExternally("http://rec0de.net")
+                }
+            }
+
+            SectionHeader {
+                text: "Source"
+            }
+
+            Label {
+                text: "github.com/rec0de/upnext"
+                anchors.horizontalCenter: parent.horizontalCenter
+                MouseArea {
+                    id : sourceMouseArea
+                    anchors.fill : parent
+                    onClicked: Qt.openUrlExternally("https://github.com/rec0de/upnext")
+                }
+            }
+
+
+            SectionHeader {
+                text: "Contact"
+            }
+
+            Label {
+                text: "mail@rec0de.net <br> GnuPG available"
+                anchors.horizontalCenter: parent.horizontalCenter
+                MouseArea {
+                    id : contactMouseArea
+                    anchors.fill : parent
+                    onClicked: Qt.openUrlExternally("mailto:mail@rec0de.net")
+                }
+            }
+
+            SectionHeader {
+                text: "Other stuff"
+            }
+
+            Label {
+                id: body
+                text: 'This App is based on "Helloworld Pro" by Artem Marchenko. Thanks a lot!<br>Further thanks to the Tweetian devs and thesignal, developer of "ohm"!'
+                font.pixelSize: Theme.fontSizeSmall
+                wrapMode: Text.WordWrap
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: Theme.paddingMedium
+                    rightMargin: Theme.paddingMedium
+                }
             }
         }
     }

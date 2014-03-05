@@ -5,9 +5,6 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
-    // Exposing properties for testing. In real app you might like to hide it behind a single interface
-    // e.g. via "property variant internals" and then put a QtObject with the individual properties to it
-    // @TODO: implement exposing via single internals property
     property alias _refreshMenuAction: refreshMenuAction
     property alias _aboutMenuAction: aboutMenuAction
 
@@ -23,12 +20,18 @@ Page {
                 console.log('status', xhr.status, xhr.statusText)
                 console.log('response', xhr.responseText)
                 if(xhr.status >= 200 && xhr.status < 300) {
+
+
+                    //Escaping content fetched from web to prevent script injections
                     var patt1 = /<br>/g;
                     var patt2 = /(<|>|\{|\}|\[|\]|\\)/g;
                     var patt3 = /1br1/g;
                     var text = xhr.responseText.replace(patt1,"1br1");
                     text = text.replace(patt1, '');
                     text = text.replace(patt3, '<br>');
+
+                    text = text.replace('&', 'und'); // Fixes a weird bug...
+
                     content.text = text;
                 } else {
                     content.text = 'Hmm.. Something went wrong.';
@@ -46,11 +49,9 @@ Page {
     }
 
 
-    // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
         anchors.fill: parent
 
-        // PullDownMenu and PushUpMenu must be declared in SilicaFlickable, SilicaListView or SilicaGridView
         PullDownMenu {
             id: pullDownMenu
             MenuItem {
@@ -75,11 +76,9 @@ Page {
 
         }
 
-        // Tell SilicaFlickable the height of its content.
         contentHeight: childrenRect.height
 
-        // Place our content in a Column.  The PageHeader is always placed at the top
-        // of the page, followed by our content.
+
         Column {
             anchors.fill: parent
             anchors.margins: Theme.paddingLarge
@@ -88,6 +87,7 @@ Page {
                 title: "UpNext"
             }
 
+            //TODO: Make this look less horrible
             Label {
                 id: content
                 text: load()
