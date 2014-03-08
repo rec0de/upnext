@@ -10,12 +10,12 @@ Page {
         anchors.fill: parent
         contentHeight: childrenRect.height
 
-        ScrollDecorator { flickable: flick }
+        VerticalScrollDecorator { flickable: flick }
 
         Column {
             anchors.fill: parent
             anchors.margins: Theme.paddingLarge
-            spacing: Theme.paddingLarge
+            spacing: Theme.paddingMedium
 
             PageHeader {
                 title: "About"
