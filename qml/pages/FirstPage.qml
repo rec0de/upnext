@@ -66,6 +66,11 @@ Page {
                     progress.visible = false;
 
                     for (var i = 0; i < 6; i++) {
+
+                        if(programarray[i] == ' '){
+                            programarray[i] = 'Error :('
+                        }
+
                     programlist.set(i, {"program": programarray[i]})
                     }
 
@@ -139,7 +144,7 @@ Page {
             Label {
                 id: message
                 visible: false;
-                text: ''
+                text: load() // Some sort of workaround for loading on startup
             }
 
             ListView {

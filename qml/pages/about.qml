@@ -10,8 +10,6 @@ Page {
         anchors.fill: parent
         contentHeight: childrenRect.height
 
-        VerticalScrollDecorator { flickable: flick }
-
         Column {
             anchors.fill: parent
             anchors.margins: Theme.paddingLarge
