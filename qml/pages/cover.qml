@@ -3,6 +3,13 @@ import Sailfish.Silica 1.0
 
 CoverBackground {
 
+    Image {
+           source: "../cover.png"
+           opacity: 0.1
+           width: parent.width
+           height: sourceSize.height * width / sourceSize.width
+       }
+
     ListModel {
         id: programlist
 
@@ -90,6 +97,7 @@ CoverBackground {
 
         Label {
             id: message
+            wrapMode: Text.WordWrap
             visible: false;
             text: load() // Some sort of workaround for loading on startup
         }

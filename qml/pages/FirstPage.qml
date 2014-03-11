@@ -151,6 +151,7 @@ Page {
                 model: programlist
                 width: parent.width
                 height: parent.height
+                boundsBehavior: Flickable.StopAtBounds
                 delegate: Column {
                     width: parent.width
 
