@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Name=UpNext
+Icon=UpNext
+Exec=UpNext
+
+Name[de_DE]=UpNext
