@@ -158,7 +158,7 @@ Page {
             ListView {
                 model: programlist
                 width: parent.width
-                height: parent.height
+                height: parent.height - 100
                 boundsBehavior: Flickable.StopAtBounds
                 delegate: Column {
                     width: parent.width
