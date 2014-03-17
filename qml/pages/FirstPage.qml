@@ -8,7 +8,7 @@ Page {
 
     property alias _refreshMenuAction: refreshMenuAction
     property alias _aboutMenuAction: aboutMenuAction
-
+    property alias _primeMenuAction: primeMenuAction
 
     ListModel {
         id: programlist
@@ -35,6 +35,14 @@ Page {
         }
         ListElement {
             name: "Pro7"
+            program: "..."
+        }
+        ListElement {
+            name: "Sat1"
+            program: "..."
+        }
+        ListElement {
+            name: "Vox"
             program: "..."
         }
     }
@@ -65,7 +73,7 @@ Page {
 
                     progress.visible = false;
 
-                    for (var i = 0; i < 6; i++) {
+                    for (var i = 0; i < 8; i++) {
 
                         if(programarray[i] == ' '){
                             programarray[i] = 'Error :('
@@ -106,6 +114,16 @@ Page {
                 onClicked: {
                     console.log("aboutMenuAction clicked")
                     pageStack.push(Qt.resolvedUrl("about.qml"))
+                }
+
+            }
+
+            MenuItem {
+                id: primeMenuAction
+                text: "20:15"
+                onClicked: {
+                    console.log("aboutMenuAction clicked")
+                    pageStack.push(Qt.resolvedUrl("prime.qml"))
                 }
 
             }

@@ -18,5 +18,6 @@ OTHER_FILES += qml/UpNext.qml \
     UpNext.desktop \
     qml/pages/cover.qml \
     qml/pages/about.qml \
-    qml/pages/FirstPage.qml
+    qml/pages/FirstPage.qml \
+    qml/pages/prime.qml
 

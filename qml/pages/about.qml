@@ -6,14 +6,17 @@ Page {
     id: page
 
     SilicaFlickable {
-        id: flick
         anchors.fill: parent
-        contentHeight: childrenRect.height
+        height: parent.height
+        contentHeight: parent.height + 100
+
 
         Column {
+
             anchors.fill: parent
-            anchors.margins: Theme.paddingLarge
-            spacing: Theme.paddingMedium
+            anchors.margins: Theme.paddingMedium
+            spacing: Theme.paddingSmall
+
 
             PageHeader {
                 title: "About"
@@ -61,6 +64,20 @@ Page {
                 }
             }
 
+            SectionHeader {
+                text: "Support me?"
+            }
+
+            Label {
+                text: "rec0de.net/a/tip.php"
+                anchors.horizontalCenter: parent.horizontalCenter
+                MouseArea {
+                    id : tipMouseArea
+                    anchors.fill : parent
+                    onClicked: Qt.openUrlExternally("http://rec0de.net/a/tip.php")
+                }
+            }
+
 
             SectionHeader {
                 text: "Contact"
@@ -82,7 +99,7 @@ Page {
 
             Label {
                 id: body
-                text: 'This App is based on "Helloworld Pro" by Artem Marchenko. Thanks a lot!<br>Further thanks to the Tweetian devs and thesignal, developer of "ohm"!'
+                text: 'Based on "Helloworld Pro" by Artem Marchenko. Thanks a lot! Further thanks to the Tweetian devs and thesignal, developer of "ohm"!'
                 font.pixelSize: Theme.fontSizeSmall
                 wrapMode: Text.WordWrap
                 anchors {
