@@ -86,7 +86,7 @@ CoverBackground {
         }
 
         xhr.open('GET', url, true);
-        xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (compatible; UpNext app for SailfishOS)");
+        xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (compatible; harbour-upnext app for SailfishOS)");
         xhr.send();
     }
 
@@ -115,7 +115,7 @@ CoverBackground {
                 }
 
                 Label {
-                    font.pixelSize: Theme.fontSizeExtraSmall
+                    font.pixelSize: Theme.fontSizeExtraSmall - 2
                     width: parent.width
                     text: program
                     truncationMode: TruncationMode.Fade

@@ -2,7 +2,7 @@
 Type=Application
 X-Nemo-Application-Type=silica-qt5
 Name=UpNext
-Icon=UpNext
-Exec=UpNext
+Icon=harbour-upnext
+Exec=harbour-upnext
 
 Name[de_DE]=UpNext

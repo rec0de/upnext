@@ -6,16 +6,16 @@
 #         - desktop icon filename must be changed
 #         - desktop filename must be changed
 #         - icon definition filename in desktop file must be changed
-TARGET = UpNext
+TARGET = harbour-upnext
 
 CONFIG += sailfishapp
 
-SOURCES += src/UpNext.cpp
+SOURCES += src/harbour-upnext.cpp
 
-OTHER_FILES += qml/UpNext.qml \
-    rpm/UpNext.spec \
-    rpm/UpNext.yaml \
-    UpNext.desktop \
+OTHER_FILES += qml/harbour-upnext.qml \
+    rpm/harbour-upnext.spec \
+    rpm/harbour-upnext.yaml \
+    harbour-upnext.desktop \
     qml/pages/cover.qml \
     qml/pages/about.qml \
     qml/pages/FirstPage.qml \
