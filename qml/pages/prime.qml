@@ -45,6 +45,23 @@ Page {
             name: "Vox"
             program: "..."
         }
+        ListElement {
+            name: "Arte"
+            program: "..."
+        }
+        ListElement {
+            name: "Phoenix"
+            program: "..."
+        }
+        ListElement {
+            name: "WDR"
+            program: "..."
+        }
+        ListElement {
+            name: "SRF1"
+            program: "..."
+        }
+
     }
 
     function load() {
@@ -73,7 +90,7 @@ Page {
 
                     progress.visible = false;
 
-                    for (var i = 0; i < 8; i++) {
+                    for (var i = 0; i < 12; i++) {
 
                         if(programarray[i] == ' '){
                             programarray[i] = 'Error :('
