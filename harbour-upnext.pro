@@ -19,5 +19,6 @@ OTHER_FILES += qml/harbour-upnext.qml \
     qml/pages/cover.qml \
     qml/pages/about.qml \
     qml/pages/FirstPage.qml \
-    qml/pages/prime.qml
+    qml/pages/prime.qml \
+    qml/pages/next.qml
 

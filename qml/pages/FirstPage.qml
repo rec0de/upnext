@@ -9,6 +9,7 @@ Page {
     property alias _refreshMenuAction: refreshMenuAction
     property alias _aboutMenuAction: aboutMenuAction
     property alias _primeMenuAction: primeMenuAction
+    property alias _nextMenuAction: nextMenuAction
 
     ListModel {
         id: programlist
@@ -83,7 +84,7 @@ Page {
                     var patt1 = /(<|>|\{|\}|\[|\]|\\)/g;
                     text = text.replace(patt1, '');
 
-                    text = text.replace('&', 'und'); // Fixes a weird bug... //Causes more bugs... TODO
+                    text = text.replace('& ', 'und'); // Fixes a weird bug... //Causes more bugs... TODO
 
                     var programarray = text.split('|')
 
@@ -138,8 +139,18 @@ Page {
                 id: primeMenuAction
                 text: "20:15"
                 onClicked: {
-                    console.log("aboutMenuAction clicked")
+                    console.log("primeMenuAction clicked")
                     pageStack.push(Qt.resolvedUrl("prime.qml"))
+                }
+
+            }
+
+            MenuItem {
+                id: nextMenuAction
+                text: "Next"
+                onClicked: {
+                    console.log("nextMenuAction clicked")
+                    pageStack.push(Qt.resolvedUrl("next.qml"))
                 }
 
             }
@@ -178,6 +189,7 @@ Page {
             Label {
                 id: message
                 visible: false;
+                wrapMode: Text.WordWrap
                 text: load() // Some sort of workaround for loading on startup
             }
 

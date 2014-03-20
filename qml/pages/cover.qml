@@ -59,7 +59,7 @@ CoverBackground {
                     var patt1 = /(<|>|\{|\}|\[|\]|\\)/g;
                     text = text.replace(patt1, '');
 
-                    text = text.replace('&', 'und'); // Fixes a weird bug...
+                    text = text.replace('& ', 'und'); // Fixes a weird bug...
 
                     var programarray = text.split('|')
 
