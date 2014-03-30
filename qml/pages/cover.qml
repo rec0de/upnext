@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import "../data.js" as DB
 
 CoverBackground {
 
@@ -16,28 +17,65 @@ CoverBackground {
         ListElement {
             name: "ARD"
             program: "..."
+            active: true
         }
         ListElement {
             name: "ZDF"
             program: "..."
+            active: true
         }
         ListElement {
             name: "3sat"
             program: "..."
+            active: true
         }
         ListElement {
             name: "Kabel1"
             program: "..."
+            active: true
         }
         ListElement {
             name: "RTL"
             program: "..."
+            active: true
         }
         ListElement {
             name: "Pro7"
             program: "..."
+            active: true
+        }
+        ListElement {
+            name: "Sat1"
+            program: "..."
+            active: true
+        }
+        ListElement {
+            name: "Vox"
+            program: "..."
+            active: true
+        }
+        ListElement {
+            name: "Arte"
+            program: "..."
+            active: true
+        }
+        ListElement {
+            name: "Phoenix"
+            program: "..."
+            active: true
+        }
+        ListElement {
+            name: "WDR"
+            program: "..."
+            active: true
+        }
+        ListElement {
+            name: "SRF1"
+            program: "..."
+            active: true
         }
     }
+
 
 
     function load() {
@@ -63,13 +101,20 @@ CoverBackground {
 
                     var programarray = text.split('|')
 
-                    for (var i = 0; i < 6; i++) {
+                    for (var i = 0; i < 12; i++) {
 
                         if(programarray[i] == ' '){
                             programarray[i] = 'Error :('
                         }
 
-                    programlist.set(i, {"program": programarray[i]})
+                        //Experimental Channel opt-out
+                        if(DB.getCover(i+1) == 0){
+                            programlist.set(i, {"active": false})
+                        }
+                        else {
+                           programlist.set(i, {"program": programarray[i]})
+                           programlist.set(i, {"active": true})
+                        }
                     }
 
                 }
@@ -112,6 +157,7 @@ CoverBackground {
                 Label {
                     font.pixelSize: Theme.fontSizeExtraSmall
                     text: name
+                    visible: active
                 }
 
                 Label {
@@ -119,6 +165,7 @@ CoverBackground {
                     width: parent.width
                     text: program
                     truncationMode: TruncationMode.Fade
+                    visible: active
                 }
 
             }

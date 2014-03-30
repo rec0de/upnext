@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Sailfish.Silica 1.0
+import "../data.js" as DB
 
 
 Page {
@@ -11,56 +11,69 @@ Page {
     property alias _primeMenuAction: primeMenuAction
     property alias _nextMenuAction: nextMenuAction
 
+
     ListModel {
         id: programlist
 
         ListElement {
             name: "ARD"
             program: "..."
+            active: true
         }
         ListElement {
             name: "ZDF"
             program: "..."
+            active: true
         }
         ListElement {
             name: "3sat"
             program: "..."
+            active: true
         }
         ListElement {
             name: "Kabel1"
             program: "..."
+            active: true
         }
         ListElement {
             name: "RTL"
             program: "..."
+            active: true
         }
         ListElement {
             name: "Pro7"
             program: "..."
+            active: true
         }
         ListElement {
             name: "Sat1"
             program: "..."
+            active: true
         }
         ListElement {
             name: "Vox"
             program: "..."
+            active: true
         }
         ListElement {
             name: "Arte"
             program: "..."
+            active: true
         }
         ListElement {
             name: "Phoenix"
             program: "..."
+            active: true
         }
         ListElement {
             name: "WDR"
             program: "..."
+            active: true
         }
         ListElement {
             name: "SRF1"
             program: "..."
+            active: true
         }
     }
 
@@ -90,13 +103,22 @@ Page {
 
                     progress.visible = false;
 
+
                     for (var i = 0; i < 12; i++) {
 
                         if(programarray[i] == ' '){
                             programarray[i] = 'Error :('
                         }
 
-                    programlist.set(i, {"program": programarray[i]})
+                        //Experimental Channel opt-out
+                        if(DB.getText(i+1) == 0){
+                            programlist.set(i, {"active": false})
+                        }
+                        else {
+                           programlist.set(i, {"program": programarray[i]})
+                           programlist.set(i, {"active": true})
+                        }
+
                     }
 
                 }
@@ -127,7 +149,7 @@ Page {
             id: pullDownMenu
             MenuItem {
                 id: aboutMenuAction
-                text: "About"
+                text: "About & Settings"
                 onClicked: {
                     console.log("aboutMenuAction clicked")
                     pageStack.push(Qt.resolvedUrl("about.qml"))
@@ -204,17 +226,20 @@ Page {
                     Label {
                         width: parent.width
                         text: name
+                        visible: active
                     }
 
                     Label {
                         width: parent.width
                         text: program
                         truncationMode: TruncationMode.Fade
+                        visible: active
                     }
                     // Spacer
                     Label {
                         width: parent.width
                         text: ''
+                        visible: active
                     }
 
 
