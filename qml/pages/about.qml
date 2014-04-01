@@ -88,7 +88,7 @@ Page {
     SilicaFlickable {
             anchors.fill: parent
             height: parent.height
-            contentHeight: parent.height + 2500
+            contentHeight: parent.height + 2800
 
 
             Column {
@@ -381,11 +381,28 @@ Page {
             }
 
             SectionHeader {
-                text: "Other stuff"
+                text: "Privacy & Warranty"
             }
 
             Label {
-                id: body
+                id: privacy
+                text: 'The data delivered by this application is not guranteed to be correct.<br>This app collects no personal information. However, your IP address might be logged by our server hosting the program data. User IPs won\'t be analyzed or given to third parties.'
+                font.pixelSize: Theme.fontSizeSmall
+                wrapMode: Text.WordWrap
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    leftMargin: Theme.paddingMedium
+                    rightMargin: Theme.paddingMedium
+                }
+            }
+
+            SectionHeader {
+                text: "Thanks"
+            }
+
+            Label {
+                id: other
                 text: 'Based on "Helloworld Pro" by Artem Marchenko. Thanks a lot! Further thanks to the Tweetian devs, thesignal, developer of "ohm", and leszek, developer of "Noto".'
                 font.pixelSize: Theme.fontSizeSmall
                 wrapMode: Text.WordWrap

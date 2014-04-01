@@ -104,7 +104,7 @@ Page {
                     for (var i = 0; i < 12; i++) {
 
                         if(programarray[i] == ' '){
-                            programarray[i] = 'Error :('
+                            programarray[i] = 'No data available (yet)'
                         }
 
                         //Experimental Channel opt-out
