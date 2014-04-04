@@ -5,7 +5,7 @@
 
 // First, let's create a short helper function to get the database connection
 function getDatabase() {
-    return LS.LocalStorage.openDatabaseSync("UpNext", "1.0", "StorageDatabase", 100000);
+    return LS.LocalStorage.openDatabaseSync("UpNext", "1.0", "StorageDatabase", 10000);
 }
 
 

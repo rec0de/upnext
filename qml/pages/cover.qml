@@ -11,6 +11,11 @@ CoverBackground {
            height: sourceSize.height * width / sourceSize.width
        }
 
+    Component.onCompleted: {
+        // Initialize the database
+        DB.initialize();
+    }
+
     ListModel {
         id: programlist
 

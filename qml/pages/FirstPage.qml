@@ -11,6 +11,11 @@ Page {
     property alias _primeMenuAction: primeMenuAction
     property alias _nextMenuAction: nextMenuAction
 
+    Component.onCompleted: {
+        // Initialize the database
+        DB.initialize();
+    }
+
 
     ListModel {
         id: programlist

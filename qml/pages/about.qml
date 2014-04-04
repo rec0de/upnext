@@ -8,7 +8,7 @@ Page {
     function update(object, id) {
         var state = DB.getText(id);
 
-        if(state == 1){
+        if(state != 0){
             object.checked = true;
         }
         else{
@@ -19,7 +19,7 @@ Page {
     function toggle(oid, id){
         var state = DB.getText(id);
 
-        if(state == 1){
+        if(state != 0){
             DB.setNote(id, 0);
             oid.checked = false;
         }
