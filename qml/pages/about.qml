@@ -90,6 +90,8 @@ Page {
             height: parent.height
             contentHeight: parent.height + 2800
 
+            VerticalScrollDecorator{}
+
 
             Column {
                 id: content
@@ -344,6 +346,7 @@ Page {
             Label {
                 text: "github.com/rec0de/upnext"
                 anchors.horizontalCenter: parent.horizontalCenter
+                font.underline: true;
                 MouseArea {
                     id : sourceMouseArea
                     anchors.fill : parent
@@ -355,14 +358,10 @@ Page {
                 text: "Support me?"
             }
 
-            Label {
-                text: "rec0de.net/a/tip.php"
-                anchors.horizontalCenter: parent.horizontalCenter
-                MouseArea {
-                    id : tipMouseArea
-                    anchors.fill : parent
-                    onClicked: Qt.openUrlExternally("http://rec0de.net/a/tip.php")
-                }
+            Button {
+                text: "Tip me (BTC/DOGE)"
+               onClicked: Qt.openUrlExternally("http://rec0de.net/a/tip.php")
+               anchors.horizontalCenter: parent.horizontalCenter
             }
 
 

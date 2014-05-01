@@ -95,7 +95,8 @@ Page {
                     var patt1 = /(<|>|\{|\}|\[|\]|\\)/g;
                     text = text.replace(patt1, '');
 
-                    text = text.replace('& ', 'und'); // Fixes a weird bug...
+                    text = text.replace('& ', 'und '); // Fixes a weird bug...
+                    text = text.replace('&#039;', '\'');
 
                     var programarray = text.split('|')
 
@@ -198,6 +199,8 @@ Page {
                 boundsBehavior: Flickable.StopAtBounds
                 delegate: Column {
                     width: parent.width
+
+                    VerticalScrollDecorator{}
 
                     Label {
                         width: parent.width
