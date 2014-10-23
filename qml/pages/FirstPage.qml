@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../data.js" as DB
+import "../components"
 
 Page {
     id: page
@@ -200,32 +201,9 @@ Page {
         }
 
         model: programlist
-        delegate: Item {
-            anchors {
-                left: parent.left
-                leftMargin: Theme.paddingLarge
-                right: parent.right
-                rightMargin: Theme.paddingLarge
-            }
-
-            height: Theme.itemSizeMedium
-
-            Column {
-                width: parent.width
-
-                Label {
-                    width: parent.width
-                    text: name
-                    visible: active
-                }
-
-                Label {
-                    width: parent.width
-                    text: program
-                    truncationMode: TruncationMode.Fade
-                    visible: active
-                }
-            }
+        delegate: ProgramItem {
+            senderName: name
+            programText: program
         }
     }
 
