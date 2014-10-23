@@ -2,13 +2,8 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../data.js" as DB
 
-
 Page {
     id: page
-
-    property alias _refreshMenuAction: refreshMenuAction
-    property alias _aboutMenuAction: aboutMenuAction
-
 
     ListModel {
         id: programlist
@@ -74,10 +69,11 @@ Page {
             active: true
         }
     }
+
     function load() {
         var url = 'https://cdown.pf-control.de/upnext/new/prime.html'; // alias domain for rec0de.net with valid SSL cert
         progress.visible = true;
-        message.visible = false;
+        message.enabled = false;
 
         var xhr = new XMLHttpRequest();
         xhr.timeout = 1000;
@@ -94,17 +90,18 @@ Page {
                     var patt1 = /(<|>|\{|\}|\[|\]|\\)/g;
                     text = text.replace(patt1, '');
 
-                    text = text.replace('& ', 'und '); // Fixes a weird bug... //Causes more bugs... TODO
+                    text = text.replace('& ', 'und '); // Fixes a weird bug...
                     text = text.replace('&#039;', '\'');
 
                     var programarray = text.split('|')
 
                     progress.visible = false;
+                    listView.visible = true;
 
                     for (var i = 0; i < 12; i++) {
 
                         if(programarray[i] == ' '){
-                            programarray[i] = 'Error :('
+                            programarray[i] = 'No data available (yet)'
                         }
 
                         //Experimental Channel opt-out
@@ -112,23 +109,24 @@ Page {
                             programlist.set(i, {"active": false})
                         }
                         else {
-                           programlist.set(i, {"program": programarray[i]})
-                           programlist.set(i, {"active": true})
+                            programlist.set(i, {"program": programarray[i]})
+                            programlist.set(i, {"active": true})
                         }
                     }
-
                 }
                 else {
+                    listView.visible = false;
                     progress.visible = false;
-                    message.visible = true;
+                    message.enabled = true;
                     message.text = 'Hmm.. Something went wrong.<br>';
                 }
             }
         }
 
         xhr.ontimeout = function() {
+            listView.visible = false;
             progress.visible = false;
-            message.visible = true;
+            message.enabled = true;
             message.text = 'Error: Request timed out.<br>';
         }
 
@@ -137,8 +135,8 @@ Page {
         xhr.send();
     }
 
-
-    SilicaFlickable {
+    SilicaListView {
+        id: listView
         anchors.fill: parent
 
         PullDownMenu {
@@ -165,67 +163,56 @@ Page {
 
         }
 
+        Component.onCompleted: {
+            load();
+        }
 
-        Column {
-            anchors.fill: parent
-            anchors.margins: Theme.paddingLarge
-            spacing: Theme.paddingSmall
-            width: parent.width
-            height: parent.height
+        VerticalScrollDecorator { }
 
-            PageHeader {
-                title: "Primetime"
+        header: PageHeader {
+            title: "Primetime"
+        }
+
+        model: programlist
+        delegate: Item {
+            anchors {
+                left: parent.left
+                leftMargin: Theme.paddingLarge
+                right: parent.right
+                rightMargin: Theme.paddingLarge
             }
 
-            ProgressBar  {
-                id: progress
-                visible: false
+            height: Theme.itemSizeMedium
+
+            Column {
                 width: parent.width
-                indeterminate: true
-            }
 
-            Label {
-                id: message
-                visible: false;
-                wrapMode: Text.WordWrap
-                text: load() // Some sort of workaround for loading on startup
-            }
-
-            ListView {
-                model: programlist
-                width: parent.width
-                height: parent.height - 100
-                boundsBehavior: Flickable.StopAtBounds
-                delegate: Column {
+                Label {
                     width: parent.width
+                    text: name
+                    visible: active
+                }
 
-                    VerticalScrollDecorator{}
-
-                    Label {
-                        width: parent.width
-                        text: name
-                        visible: active
-                    }
-
-                    Label {
-                        width: parent.width
-                        text: program
-                        truncationMode: TruncationMode.Fade
-                        visible: active
-                    }
-                    // Spacer
-                    Label {
-                        width: parent.width
-                        text: ''
-                        visible: active
-                    }
-
-
+                Label {
+                    width: parent.width
+                    text: program
+                    truncationMode: TruncationMode.Fade
+                    visible: active
                 }
             }
-
-
         }
     }
 
+    ViewPlaceholder {
+        id: message
+        enabled: false
+    }
+
+    BusyIndicator {
+        id: progress
+        visible: false
+        running: visible
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: parent
+    }
 }
