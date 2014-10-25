@@ -1,13 +1,10 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../data.js" as DB
+import "../components"
 
 Page {
     id: page
-
-    property alias _refreshMenuAction: refreshMenuAction
-    property alias _aboutMenuAction: aboutMenuAction
-
 
     ListModel {
         id: programlist
@@ -74,11 +71,10 @@ Page {
         }
     }
 
-
     function load() {
         var url = 'https://cdown.pf-control.de/upnext/new/next.html'; // alias domain for rec0de.net with valid SSL cert
         progress.visible = true;
-        message.visible = false;
+        message.enabled = false;
 
         var xhr = new XMLHttpRequest();
         xhr.timeout = 1000;
@@ -101,6 +97,7 @@ Page {
                     var programarray = text.split('|')
 
                     progress.visible = false;
+                    listView.visible = true;
 
                     for (var i = 0; i < 12; i++) {
 
@@ -113,23 +110,24 @@ Page {
                             programlist.set(i, {"active": false})
                         }
                         else {
-                           programlist.set(i, {"program": programarray[i]})
-                           programlist.set(i, {"active": true})
+                            programlist.set(i, {"program": programarray[i]})
+                            programlist.set(i, {"active": true})
                         }
                     }
-
                 }
                 else {
+                    listView.visible = false;
                     progress.visible = false;
-                    message.visible = true;
+                    message.enabled = true;
                     message.text = 'Hmm.. Something went wrong.<br>';
                 }
             }
         }
 
         xhr.ontimeout = function() {
+            listView.visible = false;
             progress.visible = false;
-            message.visible = true;
+            message.enabled = true;
             message.text = 'Error: Request timed out.<br>';
         }
 
@@ -138,8 +136,8 @@ Page {
         xhr.send();
     }
 
-
-    SilicaFlickable {
+    SilicaListView {
+        id: listView
         anchors.fill: parent
 
         PullDownMenu {
@@ -166,67 +164,33 @@ Page {
 
         }
 
+        Component.onCompleted: {
+            load();
+        }
 
-        Column {
-            anchors.fill: parent
-            anchors.margins: Theme.paddingLarge
-            spacing: Theme.paddingSmall
-            width: parent.width
-            height: parent.height
+        VerticalScrollDecorator { }
 
-            PageHeader {
-                title: "Next"
-            }
+        header: PageHeader {
+            title: "Next"
+        }
 
-            ProgressBar  {
-                id: progress
-                visible: false
-                width: parent.width
-                indeterminate: true
-            }
-
-            Label {
-                id: message
-                visible: false;
-                wrapMode: Text.WordWrap
-                text: load() // Some sort of workaround for loading on startup
-            }
-
-            ListView {
-                model: programlist
-                width: parent.width
-                height: parent.height - 100
-                boundsBehavior: Flickable.StopAtBounds
-                delegate: Column {
-                    width: parent.width
-
-                    VerticalScrollDecorator{}
-
-                    Label {
-                        width: parent.width
-                        text: name
-                        visible: active
-                    }
-
-                    Label {
-                        width: parent.width
-                        text: program
-                        truncationMode: TruncationMode.Fade
-                        visible: active
-                    }
-                    // Spacer
-                    Label {
-                        width: parent.width
-                        text: ''
-                        visible: active
-                    }
-
-
-                }
-            }
-
-
+        model: programlist
+        delegate: ProgramItem {
+            senderName: name
+            programText: program
         }
     }
 
+    ViewPlaceholder {
+        id: message
+        enabled: false
+    }
+
+    BusyIndicator {
+        id: progress
+        visible: false
+        running: visible
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: parent
+    }
 }
