@@ -78,7 +78,7 @@ Page {
 
     function load() {
         var url = 'https://cdown.pf-control.de/upnext/new/'; // alias domain for rec0de.net with valid SSL cert
-        progress.visible = true;
+        pullDownMenu.busy = true;
         message.enabled = false;
 
         var xhr = new XMLHttpRequest();
@@ -98,10 +98,12 @@ Page {
 
                     text = text.replace('& ', 'und '); // Fixes a weird bug... //Causes more bugs... TODO
                     text = text.replace('&#039;', '\'');
+                    text = text.replace('&nbsp;', ' ');
+                    text = text.replace('&hellip;', '...');
 
                     var programarray = text.split('|')
 
-                    progress.visible = false;
+                    pullDownMenu.busy = false;
                     listView.visible = true;
 
 
@@ -123,7 +125,7 @@ Page {
                 }
                 else {
                     listView.visible = false;
-                    progress.visible = false;
+                    pullDownMenu.busy = false;
                     message.enabled = true;
                     message.text = 'Hmm.. Something went wrong.<br>';
                 }
@@ -132,7 +134,7 @@ Page {
 
         xhr.ontimeout = function() {
             listView.visible = false;
-            progress.visible = false;
+            pullDownMenu.busy = false;
             message.enabled = true;
             message.text = 'Error: Request timed out.<br>';
         }
@@ -145,9 +147,15 @@ Page {
     SilicaListView {
         id: listView
         anchors.fill: parent
+        model: programlist
+        delegate: ProgramItem {
+            senderName: name
+            programText: program
+        }
 
         PullDownMenu {
             id: pullDownMenu
+            busy: fasle
             MenuItem {
                 id: aboutMenuAction
                 text: "About & Settings"
@@ -200,23 +208,10 @@ Page {
             title: "UpNext"
         }
 
-        model: programlist
-        delegate: ProgramItem {
-            senderName: name
-            programText: program
-        }
     }
 
     ViewPlaceholder {
         id: message
         enabled: false
-    }
-
-    BusyIndicator {
-        id: progress
-        visible: false
-        running: visible
-        size: BusyIndicatorSize.Large
-        anchors.centerIn: parent
     }
 }

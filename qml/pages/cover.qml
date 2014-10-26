@@ -103,6 +103,8 @@ CoverBackground {
                     text = text.replace(patt1, '');
 
                     text = text.replace('& ', 'und'); // Fixes a weird bug...
+                    text = text.replace('&nbsp;', ' ');
+                    text = text.replace('&hellip;', '...');
 
                     var programarray = text.split('|')
 
