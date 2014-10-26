@@ -22,5 +22,6 @@ OTHER_FILES += qml/harbour-upnext.qml \
     qml/pages/prime.qml \
     qml/pages/next.qml \
     qml/data.js \
-    qml/components/ProgramItem.qml
+    qml/components/ProgramItem.qml \
+    qml/pages/about2.qml
 

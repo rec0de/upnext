@@ -88,7 +88,7 @@ Page {
     SilicaFlickable {
             anchors.fill: parent
             height: parent.height
-            contentHeight: parent.height + 2800
+            contentHeight: parent.height + 1500
 
             VerticalScrollDecorator{}
 
@@ -306,112 +306,13 @@ Page {
                 }
             }
 
-
-            PageHeader {
-                title: "About"
-            }
-
-            SectionHeader {
-                text: "License"
-            }
-
-            Label {
-                text: "The Unlicense"
-                anchors.horizontalCenter: parent.horizontalCenter
-                MouseArea {
-                    id : licenseMouseArea
-                    anchors.fill : parent
-                    onClicked: Qt.openUrlExternally("http://unlicense.org")
-                }
-            }
-
-            SectionHeader {
-                text: "Made by"
-            }
-
-            Label {
-                text: "@rec0denet"
-                anchors.horizontalCenter: parent.horizontalCenter
-                MouseArea {
-                    id : madebyMouseArea
-                    anchors.fill : parent
-                    onClicked: Qt.openUrlExternally("http://rec0de.net")
-                }
-            }
-
-            SectionHeader {
-                text: "Source"
-            }
-
-            Label {
-                text: "github.com/rec0de/upnext"
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.underline: true;
-                MouseArea {
-                    id : sourceMouseArea
-                    anchors.fill : parent
-                    onClicked: Qt.openUrlExternally("https://github.com/rec0de/upnext")
-                }
-            }
-
-            SectionHeader {
-                text: "Support me?"
-            }
-
             Button {
-                text: "Tip me (BTC/DOGE)"
-               onClicked: Qt.openUrlExternally("http://rec0de.net/a/tip.php")
+               id: about
                anchors.horizontalCenter: parent.horizontalCenter
+               text: "About UpNext"
+               onClicked: pageStack.push(Qt.resolvedUrl("about2.qml"))
             }
 
-
-            SectionHeader {
-                text: "Contact"
-            }
-
-            Label {
-                text: "mail@rec0de.net <br> GnuPG available"
-                anchors.horizontalCenter: parent.horizontalCenter
-                MouseArea {
-                    id : contactMouseArea
-                    anchors.fill : parent
-                    onClicked: Qt.openUrlExternally("mailto:mail@rec0de.net")
-                }
-            }
-
-            SectionHeader {
-                text: "Privacy & Warranty"
-            }
-
-            Label {
-                id: privacy
-                text: 'The data delivered by this application is not guranteed to be correct.<br>This app collects no personal information. However, your IP address might be logged by our server hosting the program data. User IPs won\'t be analyzed or given to third parties.'
-                font.pixelSize: Theme.fontSizeSmall
-                wrapMode: Text.WordWrap
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    leftMargin: Theme.paddingMedium
-                    rightMargin: Theme.paddingMedium
-                }
-            }
-
-            SectionHeader {
-                text: "Thanks"
-            }
-
-            Label {
-                id: other
-                text: 'Based on "Helloworld Pro" by Artem Marchenko. Thanks a lot! Further thanks to the Tweetian devs, thesignal, developer of "ohm", and leszek, developer of "Noto".'
-                font.pixelSize: Theme.fontSizeSmall
-                wrapMode: Text.WordWrap
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    leftMargin: Theme.paddingMedium
-                    rightMargin: Theme.paddingMedium
-                }
-            }
         }
     }
 
