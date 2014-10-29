@@ -12,6 +12,8 @@ Item {
     }
 
     height: Theme.itemSizeMedium
+    enabled: active
+    onEnabledChanged: hide(enabled)
 
     Column {
         width: parent.width
@@ -28,6 +30,15 @@ Item {
             width: parent.width
             truncationMode: TruncationMode.Fade
             visible: active
+        }
+    }
+
+    function hide(enabled){
+        if(enabled){
+            height = Theme.itemSizeMedium;
+        }
+        else{
+            height = 0;
         }
     }
 }
