@@ -74,7 +74,7 @@ Page {
     function load() {
         var url = 'https://cdown.pf-control.de/upnext/new/next.html'; // alias domain for rec0de.net with valid SSL cert
         pullDownMenu.busy = true;
-        message.enabled = false;
+        message.visible = false;
 
         var xhr = new XMLHttpRequest();
         xhr.timeout = 1000;
@@ -99,7 +99,6 @@ Page {
                     var programarray = text.split('|')
 
                     pullDownMenu.busy = false;
-                    listView.visible = true;
 
                     for (var i = 0; i < 12; i++) {
 
@@ -117,20 +116,16 @@ Page {
                         }
                     }
                 }
-                else {
-                    listView.visible = false;
+                else { 
                     pullDownMenu.busy = false;
-                    message.enabled = true;
-                    message.text = 'Hmm.. Something went wrong.<br>';
+                    message.visible = true;
                 }
             }
         }
 
         xhr.ontimeout = function() {
-            listView.visible = false;
             pullDownMenu.busy = false;
-            message.enabled = true;
-            message.text = 'Error: Request timed out.<br>';
+            message.visible = true;
         }
 
         xhr.open('GET', url, true);
@@ -179,10 +174,26 @@ Page {
         header: PageHeader {
             title: "Next"
         }
-    }
 
-    ViewPlaceholder {
-        id: message
-        enabled: false
+        Rectangle {
+            id: message
+            visible: false
+            anchors.centerIn: parent
+            width: page.width
+            height: Theme.itemSizeLarge
+            color: Theme.highlightColor
+            Label{
+                id: messagetext
+                visible: parent.visible
+                anchors.centerIn: parent
+                text: 'Something went wrong'
+                font.pixelSize: Theme.fontSizeLarge
+            }
+            MouseArea {
+                id : messagemousearea
+                anchors.fill : parent
+                onClicked: parent.visible = false
+            }
+        }
     }
 }

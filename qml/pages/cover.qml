@@ -14,6 +14,7 @@ CoverBackground {
     Component.onCompleted: {
         // Initialize the database
         DB.initialize();
+        load()
     }
 
     ListModel {
@@ -127,7 +128,7 @@ CoverBackground {
                 }
                 else {
                     message.visible = true;
-                    message.text = 'Hmm.. Something went wrong.<br>';
+                    message.text = 'Something went wrong.<br>';
                 }
             }
         }
@@ -151,7 +152,6 @@ CoverBackground {
             id: message
             wrapMode: Text.WordWrap
             visible: false;
-            text: load() // Some sort of workaround for loading on startup
         }
 
         ListView {

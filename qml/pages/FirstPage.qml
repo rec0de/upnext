@@ -9,6 +9,7 @@ Page {
     Component.onCompleted: {
         // Initialize the database
         DB.initialize();
+        load();
     }
 
     ListModel {
@@ -79,7 +80,7 @@ Page {
     function load() {
         var url = 'https://cdown.pf-control.de/upnext/new/'; // alias domain for rec0de.net with valid SSL cert
         pullDownMenu.busy = true;
-        message.enabled = false;
+        message.visible = false;
 
         var xhr = new XMLHttpRequest();
         xhr.timeout = 1000;
@@ -104,7 +105,7 @@ Page {
                     var programarray = text.split('|')
 
                     pullDownMenu.busy = false;
-                    listView.visible = true;
+                    //listView.visible = true;
 
 
                     for (var i = 0; i < 12; i++) {
@@ -124,10 +125,10 @@ Page {
                     }
                 }
                 else {
-                    listView.visible = false;
+                    //listView.visible = false;
                     pullDownMenu.busy = false;
-                    message.enabled = true;
-                    message.text = 'Hmm.. Something went wrong.<br>';
+                    message.visible = true;
+                    messagetext.text = 'Something went wrong.';
                 }
             }
         }
@@ -135,8 +136,8 @@ Page {
         xhr.ontimeout = function() {
             listView.visible = false;
             pullDownMenu.busy = false;
-            message.enabled = true;
-            message.text = 'Error: Request timed out.<br>';
+            message.visible = true;
+            messagetext.text = 'Error: Request timed out.';
         }
 
         xhr.open('GET', url, true);
@@ -155,7 +156,7 @@ Page {
 
         PullDownMenu {
             id: pullDownMenu
-            busy: fasle
+            busy: false
             MenuItem {
                 id: aboutMenuAction
                 text: "About & Settings"
@@ -198,20 +199,32 @@ Page {
 
         }
 
-        Component.onCompleted: {
-            load();
-        }
-
         VerticalScrollDecorator { }
 
         header: PageHeader {
             title: "UpNext"
         }
 
-    }
+        Rectangle {
+            id: message
+            visible: false
+            anchors.centerIn: parent
+            width: page.width
+            height: Theme.itemSizeLarge
+            color: Theme.highlightColor
+            Label{
+                id: messagetext
+                visible: parent.visible
+                anchors.centerIn: parent
+                text: 'Something went wrong'
+                font.pixelSize: Theme.fontSizeLarge
+            }
+            MouseArea {
+                id : messagemousearea
+                anchors.fill : parent
+                onClicked: parent.visible = false
+            }
+        }
 
-    ViewPlaceholder {
-        id: message
-        enabled: false
     }
 }
