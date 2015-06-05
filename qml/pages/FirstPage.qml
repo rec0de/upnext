@@ -75,6 +75,11 @@ Page {
             program: "..."
             active: true
         }
+        ListElement {
+            name: "NDR"
+            program: "..."
+            active: true
+        }
     }
 
     function load() {
@@ -87,8 +92,6 @@ Page {
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                console.log('status', xhr.status, xhr.statusText)
-                console.log('response', xhr.responseText)
                 if(xhr.status >= 200 && xhr.status < 300) {
 
                     var text = xhr.responseText;
@@ -108,7 +111,7 @@ Page {
                     //listView.visible = true;
 
 
-                    for (var i = 0; i < 12; i++) {
+                    for (var i = 0; i < 13; i++) {
 
                         if(programarray[i] == ' '){
                             programarray[i] = 'Error :('
@@ -161,7 +164,6 @@ Page {
                 id: aboutMenuAction
                 text: "About & Settings"
                 onClicked: {
-                    console.log("aboutMenuAction clicked")
                     pageStack.push(Qt.resolvedUrl("about.qml"))
                 }
 
@@ -171,7 +173,6 @@ Page {
                 id: primeMenuAction
                 text: "20:15"
                 onClicked: {
-                    console.log("primeMenuAction clicked")
                     pageStack.push(Qt.resolvedUrl("prime.qml"))
                 }
 
@@ -181,7 +182,6 @@ Page {
                 id: nextMenuAction
                 text: "Next"
                 onClicked: {
-                    console.log("nextMenuAction clicked")
                     pageStack.push(Qt.resolvedUrl("next.qml"))
                 }
 
@@ -191,7 +191,6 @@ Page {
                 id: refreshMenuAction
                 text: "Refresh"
                 onClicked: {
-                    console.log("refreshMenuAction clicked")
                     load()
                 }
 

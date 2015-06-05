@@ -69,6 +69,11 @@ Page {
             program: "..."
             active: true
         }
+        ListElement {
+            name: "NDR"
+            program: "..."
+            active: true
+        }
     }
 
     function load() {
@@ -81,8 +86,6 @@ Page {
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                console.log('status', xhr.status, xhr.statusText)
-                console.log('response', xhr.responseText)
                 if(xhr.status >= 200 && xhr.status < 300) {
 
                     var text = xhr.responseText;
@@ -100,7 +103,7 @@ Page {
 
                     pullDownMenu.busy = false;
 
-                    for (var i = 0; i < 12; i++) {
+                    for (var i = 0; i < 13; i++) {
 
                         if(programarray[i] == ' '){
                             programarray[i] = 'No data available (yet)'
@@ -149,7 +152,6 @@ Page {
                 id: aboutMenuAction
                 text: "About & Settings"
                 onClicked: {
-                    console.log("aboutMenuAction clicked")
                     pageStack.push(Qt.resolvedUrl("about.qml"))
                 }
             }
@@ -158,7 +160,6 @@ Page {
                 id: refreshMenuAction
                 text: "Refresh"
                 onClicked: {
-                    console.log("refreshMenuAction clicked")
                     load()
                 }
             }
@@ -190,7 +191,6 @@ Page {
                 font.pixelSize: Theme.fontSizeLarge
             }
             MouseArea {
-                id : messagemousearea
                 anchors.fill : parent
                 onClicked: parent.visible = false
             }

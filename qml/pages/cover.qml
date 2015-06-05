@@ -80,6 +80,11 @@ CoverBackground {
             program: "..."
             active: true
         }
+        ListElement {
+            name: "NDR"
+            program: "..."
+            active: true
+        }
     }
 
 
@@ -93,8 +98,6 @@ CoverBackground {
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                console.log('status', xhr.status, xhr.statusText)
-                console.log('response', xhr.responseText)
                 if(xhr.status >= 200 && xhr.status < 300) {
 
                     var text = xhr.responseText;
@@ -109,7 +112,7 @@ CoverBackground {
 
                     var programarray = text.split('|')
 
-                    for (var i = 0; i < 12; i++) {
+                    for (var i = 0; i < 13; i++) {
 
                         if(programarray[i] == ' '){
                             programarray[i] = 'Error :('
