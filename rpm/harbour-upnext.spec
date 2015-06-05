@@ -13,7 +13,7 @@ Name:       harbour-upnext
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    UpNext - German TV
-Version:    0.5.1.3
+Version:    0.5.1.4
 Release:    1
 Group:      Qt/Qt
 License:    The Unlicense (http://unlicense.org)
@@ -29,7 +29,7 @@ BuildRequires:  desktop-file-utils
 
 %description
 TV Guide for the most common german channels.
-Currently supports ARD, ZDF, 3sat, RTL, Pro7 and Kabel1.
+Currently supports ARD, ZDF, 3sat, RTL, Pro7, Kabel1 and more.
 
 Source is available on github. http://github.com/rec0de/upnext
 

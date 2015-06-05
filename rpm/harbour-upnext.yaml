@@ -1,6 +1,6 @@
 Name: harbour-upnext
 Summary: UpNext - German TV
-Version: 0.5.1.3
+Version: 0.5.1.4
 Release: 1
 Group: Qt/Qt
 URL: http://rec0de.net/
@@ -9,7 +9,7 @@ Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |-
   TV Guide for the most common german channels.
-  Currently supports ARD, ZDF, 3sat, RTL, Pro7 and Kabel1.
+  Currently supports ARD, ZDF, 3sat, RTL, Pro7, Kabel1 and more.
 
   Source is available on github. http://github.com/rec0de/upnext
 
