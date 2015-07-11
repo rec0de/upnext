@@ -71,6 +71,7 @@ Page {
         update(wdr, 11);
         update(srf, 12);
         update(ndr, 13);
+        update(rtl2, 14);
 
         coverupdate(card, 1);
         coverupdate(czdf, 2);
@@ -85,12 +86,13 @@ Page {
         coverupdate(cwdr, 11);
         coverupdate(csrf, 12);
         coverupdate(cndr, 13);
+        coverupdate(crtl2, 14);
     }
 
     SilicaFlickable {
             anchors.fill: parent
             height: parent.height
-            contentHeight: parent.height + 1700
+            contentHeight: parent.height + 1800
 
             VerticalScrollDecorator{}
 
@@ -216,6 +218,15 @@ Page {
                 }
             }
 
+            TextSwitch {
+                id: rtl2
+                automaticCheck: false
+                text: "RTL2"
+                onClicked: {
+                    toggle(rtl2, 14)
+                }
+            }
+
             SectionHeader {
                 text: "Cover Channels (max.6)"
             }
@@ -322,6 +333,15 @@ Page {
                 text: "NDR"
                 onClicked: {
                     covertoggle(cndr, 13)
+                }
+            }
+
+            TextSwitch {
+                id: crtl2
+                automaticCheck: false
+                text: "RTL2"
+                onClicked: {
+                    covertoggle(crtl2, 14)
                 }
             }
 

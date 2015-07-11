@@ -80,6 +80,11 @@ Page {
             program: "..."
             active: true
         }
+        ListElement {
+            name: "RTL2"
+            program: "..."
+            active: true
+        }
     }
 
     function load() {
@@ -111,7 +116,7 @@ Page {
                     //listView.visible = true;
 
 
-                    for (var i = 0; i < 13; i++) {
+                    for (var i = 0; i < 14; i++) {
 
                         if(programarray[i] == ' '){
                             programarray[i] = 'Error :('
