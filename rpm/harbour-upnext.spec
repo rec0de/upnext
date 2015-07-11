@@ -13,7 +13,7 @@ Name:       harbour-upnext
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    UpNext - German TV
-Version:    0.5.2
+Version:    0.5.3
 Release:    1
 Group:      Qt/Qt
 License:    The Unlicense (http://unlicense.org)
@@ -36,7 +36,7 @@ Source is available on github. http://github.com/rec0de/upnext
 Contact me via email: mail@rec0de.net
 or via Twitter: @rec0denet
 
-Note: This is my very first sailfish app. The code is probably horrible, but it works. :)
+Note: This is my very first sailfish app. The code is horrible, but it works. :)
 
 %prep
 %setup -q -n %{name}-%{version}

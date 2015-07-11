@@ -1,6 +1,6 @@
 Name: harbour-upnext
 Summary: UpNext - German TV
-Version: 0.5.2
+Version: 0.5.3
 Release: 1
 Group: Qt/Qt
 URL: http://rec0de.net/
@@ -16,7 +16,7 @@ Description: |-
   Contact me via email: mail@rec0de.net
   or via Twitter: @rec0denet
 
-  Note: This is my very first sailfish app. The code is probably horrible, but it works. :)
+  Note: This is my very first sailfish app. The code is horrible, but it works. :)
 Configure: none
 Builder: qtc5
 PkgConfigBR:
