@@ -13,7 +13,7 @@ Name:       harbour-upnext
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    UpNext - German TV
-Version:    0.5.3
+Version:    0.5.4
 Release:    1
 Group:      Qt/Qt
 License:    The Unlicense (http://unlicense.org)
@@ -74,9 +74,8 @@ desktop-file-install --delete-original       \
 %{_datadir}/%{name}/qml
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/86x86/apps/%{name}.png
-/usr/bin
-/usr/share/harbour-upnext
-/usr/share/applications
-/usr/share/icons/hicolor/86x86/apps
+%{_datadir}/icons/hicolor/108x108/apps/%{name}.png
+%{_datadir}/icons/hicolor/128x128/apps/%{name}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{name}.png
 # >> files
 # << files

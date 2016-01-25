@@ -10,6 +10,13 @@ TARGET = harbour-upnext
 
 CONFIG += sailfishapp
 
+appicons.path = /usr/share/icons/hicolor
+
+appicons.files = appicons/*
+
+INSTALLS += appicons
+
+
 SOURCES += src/harbour-upnext.cpp
 
 OTHER_FILES += qml/harbour-upnext.qml \

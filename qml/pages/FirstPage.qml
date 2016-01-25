@@ -88,7 +88,7 @@ Page {
     }
 
     function load() {
-        var url = 'https://cdown.pf-control.de/upnext/new/'; // alias domain for rec0de.net with valid SSL cert
+        var url = 'https://rec0de.net/upnext/new/';
         pullDownMenu.busy = true;
         message.visible = false;
 
